@@ -3,8 +3,9 @@ import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import { PokemonContext } from "../context/PokemonContext";
 import { useContext } from "react";
+import { usePokemon } from "../context/PokemonContext";
 
-const ListContainer = styled.div`
+export const ListContainer = styled.div`
   display: flex;
   margin: 0 auto;
   flex-wrap: wrap;
@@ -15,9 +16,10 @@ const ListContainer = styled.div`
   border-radius: 10px;
 `;
 const PokemonList = () => {
-  const pokemons = useContext(PokemonContext);
+  const pokemons = usePokemon();
+  //const pokemons = useContext(PokemonContext);
   if (!pokemons || pokemons.length === 0) {
-    return <div>포켓몬 데이터가 없습니다.</div>; // 데이터가 없을 때 메시지
+    return <div>포켓몬 데이터가 없습니다.</div>;
   }
   return (
     <>
@@ -27,6 +29,7 @@ const PokemonList = () => {
             <PokemonCard
               key={pokemon.id}
               id={pokemon.id}
+              types={pokemon.types}
               name={pokemon.korean_name}
               img_url={pokemon.img_url}
             />

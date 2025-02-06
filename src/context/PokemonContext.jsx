@@ -1263,3 +1263,6 @@ export const PokemonProvider = ({ children }) => {
     </PokemonContext.Provider>
   );
 };
+export const usePokemon = () => {
+  return useContext(PokemonContext);
+};

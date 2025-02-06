@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useDashboard } from "../context/DashboardContext";
 const CardContainer = styled.div`
   height: auto;
   width: 150px;
@@ -22,7 +22,15 @@ const CardLi = styled.li`
   list-style: none;
 `;
 
-const PokemonCard = ({ name, img_url, id }) => {
+const PokemonCard = ({ name, img_url, types, id, onRemove }) => {
+  const { addPokemon } = useDashboard();
+
+  const handleAddPokemon = () => {
+    const pokemon = { id, name, img_url, types };
+    console.log("추가 버튼 클릭! 추가될 포켓몬:", pokemon); // 디버깅용 로그
+    addPokemon(pokemon);
+  };
+
   return (
     <CardLi>
       <CardContainer>
@@ -31,9 +39,13 @@ const PokemonCard = ({ name, img_url, id }) => {
           alt={name}
           style={{ width: "80px", height: "80px" }}
         />
-        <p>{id}</p>
         <p>{name}</p>
-        <CardBtn>추가</CardBtn>
+        <p>{types}</p>
+        {onRemove ? (
+          <CardBtn onClick={() => onRemove(id)}>삭제</CardBtn>
+        ) : (
+          <CardBtn onClick={handleAddPokemon}>추가</CardBtn>
+        )}
       </CardContainer>
     </CardLi>
   );

@@ -2,7 +2,11 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addPokemon } from "../redux/slices/dashboardSlice";
-import { DetailContainer, DetailImg } from "../styles/StyledComponents";
+import {
+  DetailContainer,
+  DetailImg,
+  CardBtn,
+} from "../styles/StyledComponents";
 
 const PokemonDetail = () => {
   const location = useLocation();
@@ -32,8 +36,8 @@ const PokemonDetail = () => {
         <DetailImg src={pokemon.img_url} alt={pokemon.korean_name} />
         <p>타입: {pokemon.types.join(", ")}</p>
         <p>{pokemon.description}</p>
-        <button onClick={handleBackNavigation}>뒤로 가기</button>
-        <button onClick={handleAddPokemon}>추가</button> {/* 추가 버튼 */}
+        <CardBtn onClick={handleBackNavigation}>뒤로 가기</CardBtn>
+        <CardBtn onClick={handleAddPokemon}>추가</CardBtn> {/* 추가 버튼 */}
       </DetailContainer>
     );
   }

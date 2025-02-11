@@ -60,6 +60,8 @@ export const CardBtn = styled.button`
   background-color: rgb(255, 0, 0);
   color: rgb(255, 255, 255);
   border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
 `;
 export const CardLi = styled.li`
   list-style: none;

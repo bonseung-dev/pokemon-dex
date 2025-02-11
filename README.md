@@ -1,8 +1,47 @@
-# React + Vite
+# 포켓몬 도감
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Image](https://github.com/user-attachments/assets/ffb409f4-8176-47fa-9795-aea13ce302e1)
+이 프로젝트는 포켓몬 목록을 조회하고, 선택 및 삭제할 수 있는 간단한 웹 애플리케이션입니다.
 
-Currently, two official plugins are available:
+## 1. **프로젝트 셋업**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Vite를 사용하여 리액트 프로젝트를 설정하고 기본 애플리케이션을 실행합니다.
+- `react-router-dom`을 설치하여 라우팅을 설정하고 `Home` 페이지와 `Dex` 페이지를 추가합니다.
+- `‘/’` 라우터는 `Home.jsx`로 설정되어 있습니다.
+- `Home.jsx`에는 "포켓몬 도감 시작하기" 버튼이 있어 도감 페이지(`/dex`)로 이동할 수 있습니다.
+
+## 2. **기본 컴포넌트 구성**
+
+- `Dashboard`, `PokemonList`, `PokemonCard` 등의 주요 컴포넌트를 `components` 폴더에 생성했습니다.
+- 각 컴포넌트의 기본 UI를 작성하고 간단한 스타일을 추가하여 화면에 기본 구조가 나타납니다.
+
+## 3. **포켓몬 리스트 출력**
+
+- `MOCK_DATA`에서 데이터를 가져와 `PokemonList`에 전달하고, 포켓몬 리스트를 `PokemonCard` 형태로 보여줍니다.
+
+## 4. **포켓몬 선택 기능**
+
+- `addPokemon` 함수를 사용하여 포켓몬을 선택할 수 있으며, 선택된 포켓몬은 `Dashboard`에 추가됩니다.
+
+## 5. **포켓몬 삭제 기능**
+
+- 선택된 포켓몬을 `Dashboard`에서 해제할 수 있는 기능을 추가했습니다.
+
+## 6. **알림 기능 추가**
+
+- 중복된 포켓몬을 선택하거나 6개 이상 선택하려 할 때 `alert` 메시지를 띄워 사용자에게 안내한 후 제한합니다.
+
+## 7. **디테일 페이지 생성**
+
+- `PokemonDetail` 컴포넌트를 생성하여, `queryString`으로 전달받은 포켓몬 ID를 통해 상세 정보를 표시합니다.
+
+## 8. **뒤로 가기 버튼 추가**
+
+- 디테일 페이지에 "뒤로 가기" 버튼을 추가하여 이전 페이지로 돌아갈 수 있게 합니다.
+
+## 9. **Redux Toolkit 적용**
+
+- `redux-toolkit` 브랜치를 새로 생성하고 Redux Toolkit을 설치했습니다.
+- 포켓몬 선택 상태와 추가/삭제 기능을 Redux 상태로 관리합니다.
+- `useSelector`와 `useDispatch`를 활용하여 상태 구독과 액션 디스패치를 적용하고, Context API로 관리하던 상태를 Redux로 대체했습니다.
+- `PokemonDetail` 페이지에 '추가' 버튼을 추가하여, 해당 버튼 클릭 시 포켓몬이 대시보드에 추가됩니다.

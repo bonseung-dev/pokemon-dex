@@ -11,6 +11,7 @@ const Dashboard = () => {
   const selectedPokemons = useSelector(
     (state) => state.dashboard.selectedPokemons
   );
+  console.log("선택된 포켓몬:", selectedPokemons);
 
   return (
     <>

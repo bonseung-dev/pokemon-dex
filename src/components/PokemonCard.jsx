@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { CardBtn, CardContainer, CardLi } from "../styles/StyledComponents";
 import { addPokemon, removePokemon } from "../redux/slices/dashboardSlice";
 
-const PokemonCard = ({ name, img_url, types, id, onRemove }) => {
+const PokemonCard = ({ name, korean_name, img_url, types, id, onRemove }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,8 +33,8 @@ const PokemonCard = ({ name, img_url, types, id, onRemove }) => {
           alt={name}
           style={{ width: "100px", height: "100px" }}
         />
-        <p>{name}</p>
-        <p>{types.join(", ")}</p>
+        <p>{name || korean_name}</p>
+        <p>타입 : {types.join(", ")}</p>
         {onRemove ? (
           <CardBtn onClick={handleRemovePokemon}>삭제</CardBtn>
         ) : (

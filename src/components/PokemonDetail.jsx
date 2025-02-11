@@ -20,14 +20,14 @@ const PokemonDetail = () => {
   const handleBackNavigation = () => {
     navigate("/Dex");
   };
-
+  const pokemon = pokemons.find((p) => p.id === pokemonId);
+  console.log("찾은 포켓몬:", pokemon);
   const handleAddPokemon = () => {
+    console.log("추가할 포켓몬:", pokemon);
     if (pokemon) {
       dispatch(addPokemon(pokemon));
     }
   };
-
-  const pokemon = pokemons.find((p) => p.id === pokemonId);
 
   if (pokemon) {
     return (

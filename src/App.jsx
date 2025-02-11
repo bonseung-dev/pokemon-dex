@@ -1,22 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Dex from "./pages/Dex";
-import { PokemonProvider } from "./context/PokemonContext";
-import { DashboardProvider } from "./context/DashboardContext";
+import { Provider } from "react-redux";
+import store from "./redux/config/configStore";
+import Router from "./shared/router";
 
 function App() {
   return (
-    <PokemonProvider>
-      <DashboardProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dex" element={<Dex />} />
-          </Routes>
-        </Router>
-      </DashboardProvider>
-    </PokemonProvider>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
 }
 

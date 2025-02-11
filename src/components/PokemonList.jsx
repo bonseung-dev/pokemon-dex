@@ -1,23 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
-import { PokemonContext } from "../context/PokemonContext";
-import { useContext } from "react";
-import { usePokemon } from "../context/PokemonContext";
-
-export const ListContainer = styled.div`
-  display: flex;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  gap: 30px;
-  background-color: rgb(240, 240, 240);
-  padding: 20px;
-  border: 1px solid rgb(221, 221, 221);
-  border-radius: 10px;
-`;
+import { ListContainer } from "../styles/StyledComponents";
+import { useSelector } from "react-redux";
 const PokemonList = () => {
-  const pokemons = usePokemon();
-  //const pokemons = useContext(PokemonContext);
+  const pokemons = useSelector((state) => state.pokemon.pokemons);
   if (!pokemons || pokemons.length === 0) {
     return <div>포켓몬 데이터가 없습니다.</div>;
   }

@@ -1,9 +1,7 @@
-import React, { Children, createContext, useContext } from "react";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const PokemonContext = createContext();
-
-export const PokemonProvider = ({ children }) => {
-  const MOCK_DATA = [
+const initialState = {
+  pokemons: [
     {
       img_url:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
@@ -1256,13 +1254,13 @@ export const PokemonProvider = ({ children }) => {
       description:
         "에스퍼 타입의 전설의 포켓몬으로, 희귀하고 신비로운 능력을 가집니다.",
     },
-  ];
-  return (
-    <PokemonContext.Provider value={MOCK_DATA}>
-      {children}
-    </PokemonContext.Provider>
-  );
+  ],
 };
-export const usePokemon = () => {
-  return useContext(PokemonContext);
-};
+
+const pokemonSlice = createSlice({
+  name: "pokemon",
+  initialState,
+  reducers: {},
+});
+
+export default pokemonSlice.reducer;

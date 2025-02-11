@@ -1,40 +1,35 @@
 import React from "react";
-import styled from "styled-components";
-import PokemonList from "./PokemonList";
-import { useDashboard } from "../context/DashboardContext";
-import { ListContainer } from "./PokemonList";
+import { useSelector, useDispatch } from "react-redux";
+import { ListContainer } from "../styles/StyledComponents";
 import PokemonCard from "./PokemonCard";
-
-const DashboardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: rgb(248, 248, 248);
-  margin-bottom: 20px;
-  border-radius: 10px;
-`;
+import { DashboardContainer } from "../styles/StyledComponents";
+import PokemonList from "./PokemonList";
+import { removePokemon } from "../redux/slices/dashboardSlice";
 
 const Dashboard = () => {
-  const { addPokemons, removePokemon } = useDashboard();
+  const dispatch = useDispatch();
+  const selectedPokemons = useSelector(
+    (state) => state.dashboard.selectedPokemons
+  );
+
   return (
     <>
       <DashboardContainer>
-        {addPokemons.length === 0 ? (
-          <></>
+        {selectedPokemons.length === 0 ? (
+          <p>선택 된 포켓몬이 없습니다.</p>
         ) : (
-          <div style={{ display: "flex", gap: "20px" }}>
-            {addPokemons.map((pokemon) => (
+          <ListContainer>
+            {selectedPokemons.map((pokemon) => (
               <PokemonCard
                 key={pokemon.id}
                 id={pokemon.id}
                 name={pokemon.name}
                 img_url={pokemon.img_url}
                 types={pokemon.types}
-                onRemove={removePokemon}
+                onRemove={() => dispatch(removePokemon(pokemon.id))}
               />
             ))}
-          </div>
+          </ListContainer>
         )}
       </DashboardContainer>
       <PokemonList />

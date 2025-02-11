@@ -17,7 +17,7 @@ const dashboardSlice = createSlice({
         return;
       }
       if (state.selectedPokemons.length >= 6) {
-        alert("최대 6마리까지만 선택할 수 있습니다.");
+        alert("최대 6개까지 선택할 수 있습니다.");
         return;
       }
       state.selectedPokemons.push(action.payload);
